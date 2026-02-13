@@ -1,6 +1,5 @@
 const Log = require("logger");
 const NodeHelper = require("node_helper");
-const { scheduleTimer } = require("#module_functions");
 
 /**
  * Responsible for requesting Telegram messages on the set interval and broadcasting the data.
@@ -83,7 +82,7 @@ const TelegramFetcher = function (botToken, chatId, updateInterval, maxMessages)
 		}
 
 		// Schedule next fetch
-		scheduleTimer(updateTimer, updateIntervalMS, fetchMessages);
+		updateTimer = setTimeout(fetchMessages, updateIntervalMS);
 	};
 
 	/* public methods */
