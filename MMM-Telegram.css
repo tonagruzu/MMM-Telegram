@@ -1,0 +1,46 @@
+.telegram {
+	text-align: left;
+	line-height: 1.5;
+}
+
+.telegram-messages {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.telegram-message {
+	margin-bottom: 15px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.telegram-message:last-child {
+	border-bottom: none;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+.telegram-sender {
+	font-size: 0.85em;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+.telegram-text {
+	font-size: 1em;
+	line-height: 1.4;
+	margin-bottom: 5px;
+	word-wrap: break-word;
+	white-space: pre-wrap;
+}
+
+.telegram-time {
+	font-size: 0.75em;
+	opacity: 0.6;
+	margin-top: 5px;
+}
+
+.telegram-error {
+	color: #ff6b6b;
+}
