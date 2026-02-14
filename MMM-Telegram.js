@@ -108,23 +108,29 @@ Module.register("MMM-Telegram", {
 		const messagesList = document.createElement("ul");
 		messagesList.className = "telegram-messages";
 
-		// Calculate fade parameters
-		let startFade = this.messages.length;
-		let fadeSteps = 0;
-		if (this.config.fadeMessages && this.config.fadePoint < 1) {
-			startFade = this.messages.length * this.config.fadePoint;
-			fadeSteps = this.messages.length - startFade;
-		}
-
 		// Display messages
 		this.messages.slice(0, this.config.maxMessages).forEach((message, index) => {
 			const messageItem = document.createElement("li");
 			messageItem.className = "telegram-message";
 
-			// Apply fade effect
-			if (this.config.fadeMessages && index >= startFade) {
-				const fadeStep = index - startFade;
-				messageItem.style.opacity = 1 - (1 / fadeSteps) * fadeStep;
+			// Mark the latest message with special class
+			if (index === 0) {
+				messageItem.className += " telegram-message-latest";
+			}
+
+			// Apply gradual fade effect to all messages
+			if (this.config.fadeMessages && this.messages.length > 1) {
+				// Start from 1.0 for latest, gradually fade to 0.3 for oldest
+				const fadeValue = 1.0 - (index / (this.messages.length - 1)) * 0.7;
+				messageItem.style.opacity = fadeValue;
+			}
+
+			// Add new message indicator for the latest message
+			if (index === 0) {
+				const indicator = document.createElement("span");
+				indicator.className = "telegram-new-indicator";
+				indicator.innerHTML = "●";
+				messageItem.appendChild(indicator);
 			}
 
 			// Sender name
