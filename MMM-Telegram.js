@@ -4,7 +4,7 @@ Module.register("MMM-Telegram", {
 		botToken: "", // Telegram bot token from @BotFather
 		chatId: "", // Your chat ID or user ID
 		updateInterval: 60 * 1000, // Check for new messages every 60 seconds
-		maxMessages: 5, // Maximum number of messages to display
+		maxMessages: 2, // Maximum number of messages to display
 		animationSpeed: 2.5 * 1000,
 		showSender: true, // Show sender name
 		showTime: true, // Show message timestamp
