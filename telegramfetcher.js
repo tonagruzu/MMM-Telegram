@@ -68,9 +68,13 @@ const TelegramFetcher = function (botToken, chatId, updateInterval, maxMessages)
 					}
 				});
 
-				// Add new messages to the beginning of the array
+				// Add new messages and sort by date (newest first)
 				if (newMessages.length > 0) {
-					messages = [...newMessages, ...messages].slice(0, maxMessages);
+					messages = [...newMessages, ...messages];
+					// Sort by date descending (newest first)
+					messages.sort((a, b) => b.date - a.date);
+					// Keep only maxMessages
+					messages = messages.slice(0, maxMessages);
 					Log.info(`Fetched ${newMessages.length} new Telegram message(s)`);
 				}
 			}
