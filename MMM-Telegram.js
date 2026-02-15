@@ -113,8 +113,13 @@ Module.register("MMM-Telegram", {
 			const messageItem = document.createElement("li");
 			messageItem.className = "telegram-message";
 
-			// Mark the latest message with special class
-			if (index === 0) {
+			// Check if the latest message is less than 8 hours old
+			const messageAge = Date.now() - message.date;
+			const eightHours = 8 * 60 * 60 * 1000; // 8 hours in milliseconds
+			const isRecent = messageAge < eightHours;
+
+			// Mark the latest message with special class only if it's recent (< 8 hours)
+			if (index === 0 && isRecent) {
 				messageItem.className += " telegram-message-latest";
 			}
 
@@ -125,8 +130,8 @@ Module.register("MMM-Telegram", {
 				messageItem.style.opacity = fadeValue;
 			}
 
-			// Add new message indicator for the latest message
-			if (index === 0) {
+			// Add new message indicator for the latest message only if it's recent (< 8 hours)
+			if (index === 0 && isRecent) {
 				const indicator = document.createElement("span");
 				indicator.className = "telegram-new-indicator";
 				indicator.innerHTML = "●";
